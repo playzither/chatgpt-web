@@ -1,41 +1,74 @@
 <script setup lang='ts'>
-import { computed, onMounted, ref } from 'vue'
-import { NSpin } from 'naive-ui'
-import { fetchChatConfig } from '@/api'
-import pkg from '@/../package.json'
-import { useAuthStore } from '@/store'
+import { computed, onMounted, ref } from "vue";
+import { NSpin } from "naive-ui";
+import { fetchChatConfig } from "@/api";
+import pkg from "@/../package.json";
+import { useAuthStore } from "@/store";
 
 interface ConfigState {
-  timeoutMs?: number
-  reverseProxy?: string
-  apiModel?: string
-  socksProxy?: string
-  httpsProxy?: string
-  balance?: string
+  timeoutMs?: number;
+  reverseProxy?: string;
+  apiModel?: string;
+  socksProxy?: string;
+  httpsProxy?: string;
+  balance?: string;
 }
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 
-const loading = ref(false)
+const loading = ref(false);
 
-const config = ref<ConfigState>()
+const config = ref<ConfigState>();
 
-const isChatGPTAPI = computed<boolean>(() => !!authStore.isChatGPTAPI)
+const visitor = {
+  recentActiveVisitors: "0",
+  todayVisitors: "0",
+  todayPageviews: "0",
+  yesterdayVisitors: "0",
+  yesterdayPageviews: "0",
+  monthPageviews: "0",
+  totalPageviews: "0",
+};
+
+let title = [
+  "最近活跃访客",
+  "今日访问人数",
+  "今日访问量",
+  "昨日人数",
+  "昨日访问量",
+  "本月访问量",
+  "总访问量",
+];
+
+const isChatGPTAPI = computed<boolean>(() => !!authStore.isChatGPTAPI);
 
 async function fetchConfig() {
   try {
-    loading.value = true
-    const { data } = await fetchChatConfig<ConfigState>()
-    config.value = data
-  }
-  finally {
-    loading.value = false
+    loading.value = true;
+    fetch("https://v6-widget.51.la/v6/K1A2ITNXVzjXoI1U/quote.js")
+      .then((res) => res.text())
+      .then((d) => {
+        let numList = d.match(/(?<=<\/span><span>).*?(?=<\/span><\/p>)/g);
+        if (numList != null && numList.length >= 6) {
+          visitor.recentActiveVisitors = numList[0];
+          visitor.todayVisitors = numList[1];
+          visitor.todayPageviews = numList[2];
+          visitor.yesterdayVisitors = numList[3];
+          visitor.yesterdayPageviews = numList[4];
+          visitor.monthPageviews = numList[5];
+          visitor.totalPageviews = numList[6];
+        }
+      });
+    const { data } = await fetchChatConfig<ConfigState>();
+    config.value = data;
+  } finally {
+    loading.value = false;
   }
 }
 
 onMounted(() => {
-  fetchConfig()
-})
+  fetchConfig();
+});
 </script>
 
 <template>
@@ -48,6 +81,18 @@ onMounted(() => {
       <p v-if="isChatGPTAPI">
         {{ $t("setting.balance") }}：{{ config?.balance ?? '-' }}
       </p>
+      <h2 class="text-xl font-bold">
+        网站访问统计
+      </h2>
+      <div class="p-2 space-y-2 rounded-md bg-neutral-100 dark:bg-neutral-700">
+        <p> {{title[0]}}：{{ visitor.recentActiveVisitors ?? '-' }} </p>
+        <p> {{title[1]}}：{{ visitor.todayVisitors ?? '-' }} </p>
+        <p> {{title[2]}}：{{ visitor.todayPageviews ?? '-' }} </p>
+        <p> {{title[3]}}：{{ visitor.yesterdayVisitors ?? '-' }} </p>
+        <p> {{title[4]}}：{{ visitor.yesterdayPageviews ?? '-' }} </p>
+        <p> {{title[5]}}：{{ visitor.monthPageviews ?? '-' }} </p>
+        <p> {{title[6]}}：{{ visitor.totalPageviews ?? '-' }} </p>
+      </div>
     </div>
   </NSpin>
 </template>
