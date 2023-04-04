@@ -148,7 +148,7 @@ const clearPromptTemplate = () => {
   message.success(t('common.clearSuccess'))
 }
 
-const importPromptTemplate = () => {
+const importPromptTemplate = (from = 'online') => {
   try {
     const jsonData = JSON.parse(tempPromptValue.value)
     let key = ''
@@ -169,7 +169,7 @@ const importPromptTemplate = () => {
     }
 
     for (const i of jsonData) {
-      if (!('key' in i) || !('value' in i))
+      if (!(key in i) || !(value in i))
         throw new Error(t('store.importError'))
       let safe = true
       for (const j of promptList.value) {
@@ -192,6 +192,8 @@ const importPromptTemplate = () => {
   catch {
     message.error('JSON 格式错误，请检查 JSON 格式')
   }
+  if (from === 'local')
+    showModal.value = !showModal.value
 }
 
 // 模板导出
@@ -495,7 +497,7 @@ const dataSource = computed(() => {
         block
         type="primary"
         :disabled="inputStatus"
-        @click="() => { importPromptTemplate() }"
+        @click="() => { importPromptTemplate('local') }"
       >
         {{ t('common.import') }}
       </NButton>
