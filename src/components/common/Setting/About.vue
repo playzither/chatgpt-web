@@ -20,25 +20,25 @@ const loading = ref(false);
 
 const config = ref<ConfigState>();
 
-const visitor = {
-  recentActiveVisitors: "0",
-  todayVisitors: "0",
-  todayPageviews: "0",
-  yesterdayVisitors: "0",
-  yesterdayPageviews: "0",
-  monthPageviews: "0",
-  totalPageviews: "0",
-};
+// const visitor = {
+//   recentActiveVisitors: "0",
+//   todayVisitors: "0",
+//   todayPageviews: "0",
+//   yesterdayVisitors: "0",
+//   yesterdayPageviews: "0",
+//   monthPageviews: "0",
+//   totalPageviews: "0",
+// };
 
-let title = [
-  "最近活跃访客",
-  "今日访问人数",
-  "今日访问量",
-  "昨日人数",
-  "昨日访问量",
-  "本月访问量",
-  "总访问量",
-];
+// let title = [
+//   "最近活跃访客",
+//   "今日访问人数",
+//   "今日访问量",
+//   "昨日人数",
+//   "昨日访问量",
+//   "本月访问量",
+//   "总访问量",
+// ];
 
 const isChatGPTAPI = computed<boolean>(() => !!authStore.isChatGPTAPI);
 
