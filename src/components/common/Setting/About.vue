@@ -45,20 +45,20 @@ const isChatGPTAPI = computed<boolean>(() => !!authStore.isChatGPTAPI);
 async function fetchConfig() {
   try {
     loading.value = true;
-    fetch("https://v6-widget.51.la/v6/K1A2ITNXVzjXoI1U/quote.js")
-      .then((res) => res.text())
-      .then((d) => {
-        let numList = d.match(/(?<=<\/span><span>).*?(?=<\/span><\/p>)/g);
-        if (numList != null && numList.length >= 6) {
-          visitor.recentActiveVisitors = numList[0];
-          visitor.todayVisitors = numList[1];
-          visitor.todayPageviews = numList[2];
-          visitor.yesterdayVisitors = numList[3];
-          visitor.yesterdayPageviews = numList[4];
-          visitor.monthPageviews = numList[5];
-          visitor.totalPageviews = numList[6];
-        }
-      });
+    // fetch("https://v6-widget.51.la/v6/K1A2ITNXVzjXoI1U/quote.js")
+    //   .then((res) => res.text())
+    //   .then((d) => {
+    //     let numList = d.match(/(?<=<\/span><span>).*?(?=<\/span><\/p>)/g);
+    //     if (numList != null && numList.length >= 6) {
+    //       visitor.recentActiveVisitors = numList[0];
+    //       visitor.todayVisitors = numList[1];
+    //       visitor.todayPageviews = numList[2];
+    //       visitor.yesterdayVisitors = numList[3];
+    //       visitor.yesterdayPageviews = numList[4];
+    //       visitor.monthPageviews = numList[5];
+    //       visitor.totalPageviews = numList[6];
+    //     }
+    //   });
     const { data } = await fetchChatConfig<ConfigState>();
     config.value = data;
   } finally {
@@ -82,10 +82,10 @@ onMounted(() => {
         {{ $t("setting.balance") }}：{{ config?.balance ?? '-' }}
         <span class="text-xs text-neutral-400">({{ $t('setting.monthlyUsage') }})</span>
       </p>
-      <h2 class="text-xl font-bold">
+      <!-- <h2 class="text-xl font-bold">
         网站访问统计
-      </h2>
-      <div class="p-2 space-y-2 rounded-md bg-neutral-100 dark:bg-neutral-700">
+      </h2> -->
+      <!-- <div class="p-2 space-y-2 rounded-md bg-neutral-100 dark:bg-neutral-700">
         <p> {{title[0]}}：{{ visitor.recentActiveVisitors ?? '-' }} </p>
         <p> {{title[1]}}：{{ visitor.todayVisitors ?? '-' }} </p>
         <p> {{title[2]}}：{{ visitor.todayPageviews ?? '-' }} </p>
@@ -93,7 +93,7 @@ onMounted(() => {
         <p> {{title[4]}}：{{ visitor.yesterdayPageviews ?? '-' }} </p>
         <p> {{title[5]}}：{{ visitor.monthPageviews ?? '-' }} </p>
         <p> {{title[6]}}：{{ visitor.totalPageviews ?? '-' }} </p>
-      </div>
+      </div> -->
     </div>
   </NSpin>
 </template>
