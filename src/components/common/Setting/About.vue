@@ -40,7 +40,7 @@ const config = ref<ConfigState>();
 //   "总访问量",
 // ];
 
-const isChatGPTAPI = computed<boolean>(() => !!authStore.isChatGPTAPI);
+// const isChatGPTAPI = computed<boolean>(() => !!authStore.isChatGPTAPI);
 
 async function fetchConfig() {
   try {
