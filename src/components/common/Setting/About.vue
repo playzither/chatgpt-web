@@ -78,10 +78,10 @@ onMounted(() => {
         Version - {{ pkg.version }}
       </h2>
       <p>{{ $t("setting.api") }}：{{ config?.apiModel ?? '-' }}</p>
-      <p v-if="isChatGPTAPI">
+      <!-- <p v-if="isChatGPTAPI">
         {{ $t("setting.balance") }}：{{ config?.balance ?? '-' }}
         <span class="text-xs text-neutral-400">({{ $t('setting.monthlyUsage') }})</span>
-      </p>
+      </p> -->
       <!-- <h2 class="text-xl font-bold">
         网站访问统计
       </h2> -->
