@@ -62,6 +62,13 @@ function handlePress(event: KeyboardEvent) {
           <p class="text-base text-center text-slate-500 dark:text-slate-500">
             {{ $t('common.unauthorizedTips') }}
           </p>
+          <p class="text-base text-center text-slate-500 dark:text-slate-500">
+            对不起，为防止滥用本站已设置密码
+          </p>
+          <center>
+            ❤️<a href="https://www.911fk.com/links/9D94BA4C" class="text-blue-500" target="_blank" >购买定制化域名</a>
+            📢<a href="https://wpa.qq.com/msgrd?v=1&uin=3248137069&site=&menu=yes" class="text-blue-500" target="_blank" >详情询问客服</a>
+          </center>
           <Icon403 class="w-[200px] m-auto" />
         </header>
         <NInput v-model:value="token" type="password" placeholder="" @keypress="handlePress" />
