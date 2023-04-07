@@ -4,6 +4,7 @@ import { NModal, NTabPane, NTabs } from 'naive-ui'
 import General from './General.vue'
 import Advanced from './Advanced.vue'
 import About from './About.vue'
+import Terms from './Terms.vue'
 import { useAuthStore } from '@/store'
 import { SvgIcon } from '@/components/common'
 
@@ -63,6 +64,13 @@ const show = computed({
             <span class="ml-2">{{ $t('setting.config') }}</span>
           </template>
           <About />
+        </NTabPane>
+        <NTabPane name="Terms" tab="Terms">
+          <template #tab>
+            <SvgIcon class="text-lg" icon="mdi:paper-edit-outline" />
+            <span class="ml-2">{{ $t('setting.terms') }}</span>
+          </template>
+          <Terms />
         </NTabPane>
       </NTabs>
     </div>
