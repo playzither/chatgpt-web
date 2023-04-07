@@ -65,7 +65,7 @@ const show = computed({
           </template>
           <About />
         </NTabPane>
-        <NTabPane name="Config" tab="Config">
+        <NTabPane name="Terms" tab="Terms">
           <template #tab>
             <SvgIcon class="text-lg" icon="mdi:note-edit-outline" />
             <span class="ml-2">{{ $t('setting.terms') }}</span>
