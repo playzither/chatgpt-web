@@ -2,7 +2,7 @@
 import { onMounted, ref } from "vue";
 import { NSpin } from "naive-ui";
 import { fetchChatConfig } from "@/api";
-import pkg from "@/../package.json";
+// import pkg from "@/../package.json";
 // import { useAuthStore } from "@/store";
 
 interface ConfigState {
@@ -75,7 +75,7 @@ onMounted(() => {
   <NSpin :show="loading">
     <div class="p-4 space-y-4">
       <h2 class="text-xl font-bold">
-        Version - {{ pkg.version }}
+        Version：gpt-3.5-turbo
       </h2>
       <p>{{ $t("setting.api") }}：{{ config?.apiModel ?? '-' }}</p>
       <!-- <p v-if="isChatGPTAPI">
