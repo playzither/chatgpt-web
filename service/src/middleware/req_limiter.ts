@@ -31,7 +31,7 @@ const req_limiter = async (req, res, next) => {
                     return
                 })
             // sign 找到了但免费次数已经没有了
-            }else if (fp.per_count <= 0) {
+            }else if (fp.per_count_count <= 0) {
                 let msg = 'Error: 已超出每日' + PER_DAY_COUNT + '次免费次数，可购买专属域名解除限制 | ' + PER_DAY_COUNT + ' free times per day'
                 res.status(200).send({ status: 'Error', message: msg ?? 'Please authenticate.', data: null })
                 res.end()

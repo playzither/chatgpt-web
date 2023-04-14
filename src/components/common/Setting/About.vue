@@ -6,12 +6,12 @@ import pkg from "@/../package.json";
 import { useAuthStore } from "@/store";
 
 interface ConfigState {
-  timeoutMs?: number;
-  reverseProxy?: string;
-  apiModel?: string;
-  socksProxy?: string;
-  httpsProxy?: string;
-  balance?: string;
+  timeoutMs?: number
+  reverseProxy?: string
+  apiModel?: string
+  socksProxy?: string
+  httpsProxy?: string
+  usage?: string
 }
 
 const authStore = useAuthStore();
@@ -79,8 +79,7 @@ onMounted(() => {
       </h2>
       <p>{{ $t("setting.api") }}：{{ config?.apiModel ?? '-' }}</p>
       <p v-if="isChatGPTAPI">
-        {{ $t("setting.balance") }}：{{ config?.balance ?? '-' }}
-        <span class="text-xs text-neutral-400">({{ $t('setting.monthlyUsage') }})</span>
+        {{ $t("setting.monthlyUsage") }}：{{ config?.usage ?? '-' }}
       </p>
       <h2 class="text-xl font-bold">
         网站访问统计
