@@ -66,8 +66,8 @@ function handlePress(event: KeyboardEvent) {
             对不起，为防止滥用本站已设置密码
           </p>
           <center>
-            ❤️<a href="https://www.911fk.com/links/9D94BA4C" class="text-blue-500" target="_blank" >购买定制化域名</a>
-            📢<a href="https://wpa.qq.com/msgrd?v=1&uin=3248137069&site=&menu=yes" class="text-blue-500" target="_blank" >详情询问客服</a>
+            <!-- ❤️<a href="https://www.911fk.com/links/9D94BA4C" class="text-blue-500" target="_blank" >购买定制化域名</a> -->
+            📢<a href="https://wpa.qq.com/msgrd?v=1&uin=2460866284&site=&menu=yes" class="text-blue-500" target="_blank" >定制化域名联系客服QQ2460866284</a>
           </center>
           <Icon403 class="w-[200px] m-auto" />
         </header>
